@@ -1,0 +1,24 @@
+# Claude Code
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# PyInstaller build output (regenerate with: pyinstaller "WU Scraper.spec")
+build/
+dist/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Generated output
+*.csv
+
+# OS
+.DS_Store
+Thumbs.db
