@@ -11,7 +11,7 @@ datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 
 a = Analysis(
-    ['wu_scraper_gui.pyw'],
+    ['wunder_csv_gui.pyw'],
     pathex=[],
     binaries=binaries,
     datas=datas,
@@ -30,7 +30,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='WU Scraper',
+    name='WUnder CSV',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -50,5 +50,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='WU Scraper',
+    name='WUnder CSV',
 )

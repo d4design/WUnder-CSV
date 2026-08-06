@@ -1,5 +1,5 @@
 """
-WU Scraper - Weather Underground PWS to CSV (desktop GUI).
+WUnder CSV - Weather Underground PWS to CSV (desktop GUI).
 
 Run with pythonw.exe (double-click the .pyw) for a console-free window.
 One-time setup on a new machine:
@@ -19,7 +19,7 @@ from tkinter import ttk
 
 # When frozen (PyInstaller), Playwright's browser binary is bundled next to
 # the exe rather than in the normal pip-managed ms-playwright cache - point
-# it there before importing wu_scraper, which imports playwright.sync_api.
+# it there before importing wunder_csv, which imports playwright.sync_api.
 if getattr(sys, "frozen", False):
     os.environ.setdefault(
         "PLAYWRIGHT_BROWSERS_PATH",
@@ -29,7 +29,7 @@ if getattr(sys, "frozen", False):
 from tkcalendar import DateEntry
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import wu_scraper
+import wunder_csv
 
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -209,14 +209,14 @@ class App(Tk):
             self._queue.put(("progress", current, total, day, status))
 
         try:
-            csv_text, filename = wu_scraper.run_scrape(
+            csv_text, filename = wunder_csv.run_scrape(
                 station_id, start, end,
                 units=units, resolution=resolution,
                 progress_callback=progress_cb,
                 should_cancel=cancel_event.is_set,
             )
             self._queue.put(("done", csv_text, filename))
-        except wu_scraper.ScrapeCancelled:
+        except wunder_csv.ScrapeCancelled:
             self._queue.put(("cancelled",))
         except Exception as e:
             self._queue.put(("error", str(e)))

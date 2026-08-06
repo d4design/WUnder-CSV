@@ -8,7 +8,7 @@ __pycache__/
 venv/
 *.egg-info/
 
-# PyInstaller build output (regenerate with: pyinstaller "WU Scraper.spec")
+# PyInstaller build output (regenerate with: pyinstaller "WUnder CSV.spec")
 build/
 dist/
 

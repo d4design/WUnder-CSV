@@ -1,5 +1,5 @@
 """
-Weather Underground PWS Scraper - core engine.
+WUnder CSV - core scraping/CSV engine.
 
 Fetches 5-minute interval table data from the WU dashboard (public, no API
 key) and returns CSV text.
