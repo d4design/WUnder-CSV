@@ -29,17 +29,10 @@ For machines without Python installed. The tricky part is that Playwright's Chro
 
 ```bash
 pip install pyinstaller
-pyinstaller --onedir --windowed --name "WUnder CSV" --icon=wu.ico --collect-all playwright --collect-all tkcalendar app.pyw
+pyinstaller --noconfirm "WUnder CSV.spec"
 ```
 
-Then copy both Chromium builds from the local Playwright cache into the dist folder (both are needed — headless launches use the headless-shell build by default, but Playwright falls back to the regular build in some paths):
-
-```bash
-cp -r "$LOCALAPPDATA/ms-playwright/chromium-1234" "dist/WUnder CSV/ms-playwright/"
-cp -r "$LOCALAPPDATA/ms-playwright/chromium_headless_shell-1234" "dist/WUnder CSV/ms-playwright/"
-```
-
-(Version numbers in the folder names may differ — check `%LOCALAPPDATA%\ms-playwright` and match what's actually installed.)
+The spec bundles `wu.ico` and copies both Chromium builds that the installed Playwright version expects (read from its `browsers.json`) from `%LOCALAPPDATA%\ms-playwright` into `dist/WUnder CSV/ms-playwright/`. Both are needed: headless launches use the headless-shell build by default, but Playwright falls back to the regular build in some paths. If they're missing, run `playwright install chromium` first.
 
 `app.pyw` detects when it's frozen and points `PLAYWRIGHT_BROWSERS_PATH` at that bundled `ms-playwright` folder instead of the normal pip-managed cache.
 
